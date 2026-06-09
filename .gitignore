@@ -1,0 +1,18 @@
+# Firmware binaries (proprietary LG/MediaTek — do not commit)
+*.bin
+
+# radare2 / analysis session files
+struct
+*.r2
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# Editor
+.vscode/
+*.swp
+*~
