@@ -1,8 +1,13 @@
-# LG E450g (MT6575) LK Bootloader Patch — Unsigned Recovery Boot
+# LG E450g / E440g (MT6575) LK Bootloader Patch — Unsigned Recovery Boot
 
-Investigación y parche para el bootloader LK del **LG Optimus L5 II (E450g)** que permite bootear recoveries no firmados (CWM, TWRP) sin "Security Error", sin romper el boot de la ROM stock.
+Investigación y parche para el bootloader LK de la serie **LG Optimus L II (MT6575)** que permite bootear recoveries no firmados (CWM, TWRP) sin "Security Error", sin romper el boot de la ROM stock.
 
-**Resultado:** 9 parches en el binario `uboot_orig.bin` (v7) — verificado en hardware. CWM 6.0.4.4 arranca correctamente.
+| Dispositivo | Estado | Detalle |
+|---|---|---|
+| **LG Optimus L5 II (E450g)** | ✅ Verificado en hardware (9 parches, v7) | Este README |
+| **LG Optimus L4 II (E440g)** | ⚠️ Flasheado y stock OK; falta probar recovery sin firmar (9 parches, v1) | [e440/README.md](e440/README.md) |
+
+**Resultado (E450g):** 9 parches en el binario `uboot_orig.bin` (v7) — verificado en hardware. CWM 6.0.4.4 arranca correctamente.
 
 ---
 
