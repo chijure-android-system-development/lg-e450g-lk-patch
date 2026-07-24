@@ -1,11 +1,12 @@
-# LG E450g / E440g (MT6575) LK Bootloader Patch — Unsigned Recovery Boot
+# LG E450g / E440g / D213 (MediaTek) LK Bootloader Patch — Unsigned Recovery Boot
 
-Investigación y parche para el bootloader LK de la serie **LG Optimus L II (MT6575)** que permite bootear recoveries no firmados (CWM, TWRP) sin "Security Error", sin romper el boot de la ROM stock.
+Investigación y parches para el bootloader LK de varios LG con SoC MediaTek que permiten bootear recoveries no firmados (CWM, TWRP) sin "Security Error", sin romper el boot de la ROM stock.
 
-| Dispositivo | Estado | Detalle |
-|---|---|---|
-| **LG Optimus L5 II (E450g)** | ✅ Verificado en hardware (9 parches, v7) | Este README |
-| **LG Optimus L4 II (E440g)** | ✅ Verificado en hardware (9 parches, v1) — stock OK + TWRP sin firmar OK | [e440/README.md](e440/README.md) |
+| Dispositivo | SoC | Estado | Detalle |
+|---|---|---|---|
+| **LG Optimus L5 II (E450g)** | MT6575 | ✅ Verificado en hardware (9 parches, v7) | Este README |
+| **LG Optimus L4 II (E440g)** | MT6575 | ✅ Verificado en hardware (9 parches, v1) — stock OK + TWRP sin firmar OK | [e440/README.md](e440/README.md) |
+| **LG Optimus L50 (D213)** | MT6572 | ✅ Verificado en hardware (2 parches) — stock OK + TWRP sin firmar OK | [d213/README.md](d213/README.md) |
 
 **Resultado (E450g):** 9 parches en el binario `uboot_orig.bin` (v7) — verificado en hardware. CWM 6.0.4.4 arranca correctamente.
 
