@@ -9,13 +9,12 @@ es la **misma**, recompilada en otra dirección — se re-encontraron todos los
 offsets con desensamblado propio y verificación cruzada byte a byte contra el
 binario del E450 (ver `ANALYSIS.md`).
 
-**Estado (2026-07-22): parche flasheado en el dispositivo real y verificado.**
+**Estado (2026-07-23): parche flasheado y verificado en el dispositivo real, objetivo completo.**
 `uboot_patched_v1.bin` fue escrito en `/dev/uboot`, el readback coincide por
 SHA256, y tras reboot el dispositivo volvió a arrancar la ROM stock con
 normalidad (ADB reconectó, root sigue funcionando, uptime fresco de reboot).
-**Pendiente:** conseguir un recovery (CWM/TWRP) no firmado del E440 para
-confirmar que ahora arranca sin "Security Error" — es el objetivo final del
-parche y aún no se probó porque no se dispone de esa imagen todavía.
+Además, un recovery TWRP no firmado fue probado y **arranca correctamente**
+(sin "Security Error") — confirma el bypass funcionando de punta a punta.
 
 ---
 
@@ -74,7 +73,7 @@ Guardados localmente (fuera de este repositorio, son binarios propietarios)
    los bytes ya probados en el E450, dando confianza en la técnica antes de
    generar los bytes nuevos para el E440.
 
-## Los 9 parches (v1, offline, no flasheado aún)
+## Los 9 parches (v1, verificado en hardware)
 
 | Parche | File offset | Bytes originales | Bytes nuevos | Descripción |
 |---|---|---|---|---|
@@ -102,7 +101,7 @@ python3 validate_and_patch_uboot.py ../backups-originales/uboot_raw.bin uboot_pa
 - [x] Confirmación explícita del usuario para escribir en la partición `uboot` real — obtenida.
 - [x] Flasheo y verificación de readback SHA256 — hecho, coincide.
 - [x] Confirmar que la ROM stock sigue arrancando con normalidad tras el parche — confirmado (reboot, ADB reconectó, root funcional).
-- [ ] Conseguir un recovery no firmado (CWM/TWRP) para el E440 para poder probar el objetivo real del parche (los backups actuales de `recovery` son la imagen stock firmada por LG, que ya arrancaba igual sin el parche — no prueba nada sobre el bypass).
+- [x] Conseguir un recovery no firmado (TWRP) para el E440 y confirmar que arranca sin "Security Error" — confirmado, objetivo del parche cumplido.
 - [ ] Opcional: verificar que mtkclient (`/media/chijure/Datos/Descargas/mtkclient`) reconoce el E440 en modo Preloader, como vía adicional de recuperación por USB para el futuro (ya no es urgente dado que el reboot post-parche fue exitoso).
 
 ## Flashear vía ADB (root ya obtenido)

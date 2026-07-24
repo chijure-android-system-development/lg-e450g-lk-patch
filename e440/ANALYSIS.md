@@ -169,3 +169,8 @@ reflashear un parche ya probado**. Se recomienda:
 3. Flashear, verificar SHA256 de readback, y reiniciar probando primero que
    la ROM stock siga arrancando con normalidad antes de probar cualquier
    recovery no firmado.
+
+**Actualización (2026-07-23):** parche flasheado en hardware real. Stock
+sigue arrancando con normalidad y un recovery TWRP no firmado arranca
+correctamente sin "Security Error" — el razonamiento offline de este
+análisis quedó confirmado sin necesidad de iteraciones adicionales.
