@@ -7,6 +7,30 @@ Bootloader parcheado (readback SHA256 OK, stock arranca normal), TWRP
 Verified!!!"` en dmesg al bootear TWRP, pero es solo informativo — no
 impide el arranque, confirmando que el bypass en el LK es efectivo.
 
+## Corrección: combinación de teclas para recovery (2026-07-24)
+
+Las instrucciones originales de 4pda decían Vol− + Power para entrar a
+recovery. Es **incorrecto** para este hardware. Se encontró el kernel
+fuente oficial de LG para este dispositivo
+(`LGD213CF/LGD213CF_v10a_Kernel`) y se confirmó en
+`arch/arm/mach-mt6572/muse72_s4_kk/dct/dct/cust_kpd.h` (el board
+`muse72_s4_kk` es el target de build indicado explícitamente en el
+`README.TXT` del paquete):
+
+```c
+#define MT65XX_RECOVERY_KEY  1    /* KEY_VOLUMEUP */
+#define MT65XX_FACTORY_KEY  10    /* KEY_VOLUMEDOWN */
+```
+
+**Recovery = Vol+ (arriba) + Power.** Vol− (abajo) + Power es el modo
+FACTORY/descarga, no recovery. Los otros 3 boards del mismo paquete de
+kernel (`muse72_phone`, `muse72_s2_kk0`, `muse72_s5_kk`) coinciden en el
+mismo mapeo semántico, solo cambia el código de tecla interno (0/9 vs
+1/10). No se encontró el source del LK/preloader en este paquete (solo
+kernel Linux), pero el LK de MTK comparte el mismo `cust_kpd.h` generado
+por DCT en su build, así que este archivo es autoritativo para la
+combinación de boot real, no solo para el driver de teclado de Android.
+
 ## Origen del parche
 
 El parche NO se derivó completo desde cero: se encontró un binario ya

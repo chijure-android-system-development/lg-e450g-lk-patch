@@ -87,11 +87,30 @@ adb shell "su -c 'dd if=/data/local/tmp/recovery.img of=/dev/recovery && sync'"
 
 ## Entrar a recovery
 
-- **Desde apagado:** mantener Vol− + Power, soltar al ver el logo y volver a
-  presionar inmediatamente. Navegación con volumen, selección con doble
-  toque de Power. Aceptar el reset (los datos NO se borran — solo se borran
-  con el recovery stock).
-- **Desde el sistema (con root):** `adb shell "su -c 'reboot recovery'"`.
+**Corrección (2026-07-24):** las instrucciones originales de 4pda decían
+Vol− + Power. Es **incorrecto** para este hardware — confirmado contra el
+kernel fuente oficial de LG (`LGD213CF_v10a_Kernel`, board `muse72_s4_kk`,
+que es el target de build indicado en el `README.TXT` del paquete):
+
+```
+arch/arm/mach-mt6572/muse72_s4_kk/dct/dct/cust_kpd.h:
+  #define MT65XX_RECOVERY_KEY  1    /* KEY_VOLUMEUP */
+  #define MT65XX_FACTORY_KEY  10    /* KEY_VOLUMEDOWN */
+```
+
+Los otros 3 boards del mismo paquete de kernel (`muse72_phone`,
+`muse72_s2_kk0`, `muse72_s5_kk`) coinciden en el mismo mapeo semántico
+(Recovery=VolUp, Factory=VolDown), solo cambia el código de tecla interno.
+
+- **Desde apagado:** mantener **Vol+ (arriba)** + Power, soltar al ver el
+  logo y volver a presionar inmediatamente. Navegación con volumen,
+  selección con doble toque de Power. Aceptar el reset (los datos NO se
+  borran — solo se borran con el recovery stock).
+- **Vol− (abajo) + Power es el modo FACTORY/descarga**, no recovery — no
+  confundir.
+- **Desde el sistema (con root), método verificado y recomendado:**
+  `adb shell "su -c 'reboot recovery'"` — no depende de la combinación
+  física, ya usado con éxito en este dispositivo.
 
 ## Troubleshooting
 
